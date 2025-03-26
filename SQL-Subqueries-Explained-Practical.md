@@ -136,5 +136,4 @@ Use Cases:
 ✔️ Compare across groups
 
 -------------------------------------------------------
-Author: Your Name Here
-Save & upload this as `sql-subqueries.txt`. Star it ⭐ if you love SQL!
+Author: kalpana @ www.Go1digital.com
