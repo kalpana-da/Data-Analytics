@@ -1,0 +1,129 @@
+<h2>Understanding SQL Joins: INNER, LEFT, RIGHT & FULL Joins Explained</h2>
+
+<p>SQL Joins allow you to combine rows from two or more tables based on a related column. It's one of the most powerful concepts in relational databases — and crucial for data analysis and backend development.</p>
+
+<hr>
+
+<h3>🧱 Sample Tables</h3>
+
+<h4>1. <code>employees</code> Table</h4>
+<table border="1" cellpadding="5">
+  <thead>
+    <tr><th>emp_id</th><th>name</th><th>dept_id</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Alice</td><td>10</td></tr>
+    <tr><td>2</td><td>Bob</td><td>20</td></tr>
+    <tr><td>3</td><td>Charlie</td><td>NULL</td></tr>
+    <tr><td>4</td><td>David</td><td>30</td></tr>
+  </tbody>
+</table>
+
+<h4>2. <code>departments</code> Table</h4>
+<table border="1" cellpadding="5">
+  <thead>
+    <tr><th>dept_id</th><th>dept_name</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>10</td><td>HR</td></tr>
+    <tr><td>20</td><td>Engineering</td></tr>
+    <tr><td>40</td><td>Marketing</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h3>🔄 1. INNER JOIN</h3>
+<p>Returns records with matching values in both tables.</p>
+
+<pre><code>SELECT e.name, d.dept_name
+FROM employees e
+INNER JOIN departments d ON e.dept_id = d.dept_id;</code></pre>
+
+<h4>🧾 Output:</h4>
+<table border="1" cellpadding="5">
+  <thead>
+    <tr><th>name</th><th>dept_name</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Alice</td><td>HR</td></tr>
+    <tr><td>Bob</td><td>Engineering</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h3>⬅️ 2. LEFT JOIN (or LEFT OUTER JOIN)</h3>
+<p>Returns all records from the left table, and matched records from the right. If no match, result is NULL.</p>
+
+<pre><code>SELECT e.name, d.dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id;</code></pre>
+
+<h4>🧾 Output:</h4>
+<table border="1" cellpadding="5">
+  <thead>
+    <tr><th>name</th><th>dept_name</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Alice</td><td>HR</td></tr>
+    <tr><td>Bob</td><td>Engineering</td></tr>
+    <tr><td>Charlie</td><td>NULL</td></tr>
+    <tr><td>David</td><td>NULL</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h3>➡️ 3. RIGHT JOIN (or RIGHT OUTER JOIN)</h3>
+<p>Returns all records from the right table, and the matched records from the left. If no match, result is NULL.</p>
+
+<pre><code>SELECT e.name, d.dept_name
+FROM employees e
+RIGHT JOIN departments d ON e.dept_id = d.dept_id;</code></pre>
+
+<h4>🧾 Output:</h4>
+<table border="1" cellpadding="5">
+  <thead>
+    <tr><th>name</th><th>dept_name</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Alice</td><td>HR</td></tr>
+    <tr><td>Bob</td><td>Engineering</td></tr>
+    <tr><td>NULL</td><td>Marketing</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h3>🔄 4. FULL JOIN (or FULL OUTER JOIN)</h3>
+<p>Returns all records when there is a match in either left or right table. Rows with no match get NULLs.</p>
+<p><em>Note: Not all RDBMS support FULL JOIN (e.g., MySQL doesn’t support it directly — you use a UNION instead).</em></p>
+
+<pre><code>
+-- Works in PostgreSQL, SQL Server
+SELECT e.name, d.dept_name
+FROM employees e
+FULL OUTER JOIN departments d ON e.dept_id = d.dept_id;
+</code></pre>
+
+<h4>🧾 Output:</h4>
+<table border="1" cellpadding="5">
+  <thead>
+    <tr><th>name</th><th>dept_name</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Alice</td><td>HR</td></tr>
+    <tr><td>Bob</td><td>Engineering</td></tr>
+    <tr><td>Charlie</td><td>NULL</td></tr>
+    <tr><td>David</td><td>NULL</td></tr>
+    <tr><td>NULL</td><td>Marketing</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h3>📌 Final Thoughts</h3>
+<p>Understanding SQL joins gives you the power to work with complex datasets, relate tables, and extract meaningful insights. Practice by writing queries on your own test tables, and don't be afraid to explore more advanced joins like SELF JOIN or CROSS JOIN!</p>
+
+<p>👇 Drop your favorite join type in the comments below — and let me know if you'd like a post on aggregate functions next!</p>
